@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadhaar Validation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .form-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+            width: 500px;
+        }
+        h2 {
+            color: #4b79a1;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 400px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #6a82fb;
+        }
+        .valid {
+            border-color: #00c851;
+            background-color: #ccffcc;
+        }
+        .invalid {
+            border-color: #ff4444;
+            background-color: #ffcccc;
+        }
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .message.valid {
+            color: #00c851;
+        }
+        .message.invalid {
+            color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Enter Aadhaar Number</h2>
+        <input type="text" id="aadhaarInput" placeholder="Enter 12-digit Aadhaar" maxlength="12" oninput="validateAadhaar()">
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function validateAadhaar() {
+            const aadhaarInput = document.getElementById('aadhaarInput');
+            const message = document.getElementById('message');
+            const aadhaarNumber = aadhaarInput.value;
+            
+            // Regular expression to check if the Aadhaar is a 12-digit number
+            const aadhaarPattern = /^\d{12}$/;
+
+            if (aadhaarPattern.test(aadhaarNumber)) {
+                aadhaarInput.classList.remove('invalid');
+                aadhaarInput.classList.add('valid');
+                message.textContent = "Valid Aadhaar number";
+                message.classList.remove('invalid');
+                message.classList.add('valid');
+            } else {
+                aadhaarInput.classList.remove('valid');
+                aadhaarInput.classList.add('invalid');
+                message.textContent = "Invalid Aadhaar number";
+                message.classList.remove('valid');
+                message.classList.add('invalid');
+            }
+        }
+    </script>
+
+</body>
+</html>
